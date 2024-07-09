@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./js/script.js" type="module"></script>
+    <title>Administracion</title>
+</head>
+<body>
+    <div id="spinner" class="spinner" style="display: none;">
+        <img src="./assets/logo.svg">
+    </div>
+
+    <header class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <img src="./assets/logo.svg" alt="logo" class="mr-2">
+            </div>
+            <nav class="links">
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Anuncio</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <h2 class="titulo">Administracion</h2>
+
+    <div class="banner"></div>
+
+    <main>
+        <div class="container text-center my-5">
+            <form action="#">
+                <fieldset class="p-4 border rounded">
+                    <legend class="w-auto">Información del Anuncio</legend>
+                    <div class="form-group row">
+                        <label for="titulo" class="col-sm-2 col-form-label">Título</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="titulo" placeholder="Título" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="transaccion" class="col-sm-2 col-form-label">Transacción</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="transaccion" required>
+                                <option value="venta">Venta</option>
+                                <option value="alquiler">Alquiler</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="descripcion" placeholder="Descripción" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="precio" class="col-sm-2 col-form-label">Precio</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="precio" placeholder="Precio" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="puertas" class="col-sm-2 col-form-label">Puertas</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="puertas" min="3" max="5" placeholder="Puertas" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="kms" class="col-sm-2 col-form-label">Kilómetros</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="kms" placeholder="KMs" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="potencia" class="col-sm-2 col-form-label">Potencia</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="potencia" placeholder="Potencia" autocomplete="off" required>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="container mt-4">
+                    <div class="row align-items-center">
+                        <div class="col"><input type="submit" class="btn btn-primary" value="Guardar"></div>
+                        <div class="col"><input type="button" value="Eliminar" id="btnDelete" class="d-none btn btn-danger"></div>
+                        <div class="col"><input type="hidden" name="txtId"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="spinner-container"></div>
+        
+        <section class="container filtroDiv my-5">
+            <div class="row">
+                <div class="col text-center">
+                    <h3> --- FILTROS  ---- </h3>
+                </div>
+            </div>
+            <hr />
+            <div class="row text-left">
+                <div class="col"><h4>Filtrar por</h4></div>
+                <div class="col"><h4>Promedio de precios</h4></div>
+            </div>
+            <div class="row text-left">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Transacción</label>
+                        <select name="transaccion" id="selectFiltros" class="form-control" required>
+                            <option value="N/A" selected>N/A</option>
+                            <option value="venta">Venta</option>
+                            <option value="alquiler">Alquiler</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <input type="text" id="filtroPrecio" class="form-control" value="N/A" readonly>
+                </div>
+            </div>
+        </section>
+     
+        <section class="container checkboxDiv my-5">
+            <div class="row">
+                <div class="col">
+                    <h3>Campos mostrados <i>(Tildar para mostrar)</i></h3>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="checkbox2" value="titulo" checked>
+                    <label class="form-check-label" for="checkbox2">Título</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="checkbox3" value="transaccion" checked>
+                    <label class="form-check-label" for="checkbox3">Transacción</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="checkbox4" value="descripcion" checked>
+                    <label class="form-check-label" for="checkbox4">Descripción</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="checkbox5" value="precio" checked>
+                    <label class="form-check-label" for="checkbox5">Precio</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="checkbox6" value="puertas" checked>
+                    <label class="form-check-label" for="checkbox6">Puertas</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="checkbox7" value="kms" checked>
+                    <label class="form-check-label" for="checkbox7">KMs</label>
+                </div>   
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="checkbox8" value="potencia" checked>
+                    <label class="form-check-label" for="checkbox8">Potencia</label>
+                </div>
+            </div>
+            <hr>
+        </section>
+
+        
+        <div class="container">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Transacción</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Puertas</th>
+                        <th>KMs</th>
+                        <th>Potencia</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between">
+            <nav class="links">
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Anuncio</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Contacto</a></li>
+                </ul>
+            </nav>
+            <span>&copy; Todos los derechos reservados 2024</span>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
